@@ -2,7 +2,7 @@
   "mcpVersion": "1.0.0",
   "mcpName": "io.github.veldica/publishready",
   "name": "@veldica/publishready-mcp",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "description": "PublishReady: Turn AI drafts into publish-ready writing. The final QA pass for AI-generated prose.",
   "transport": {
     "type": "stdio",

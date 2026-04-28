@@ -8,7 +8,7 @@ const packageJson = require("../package.json") as {
 };
 
 export const PACKAGE_NAME = "io.github.veldica/publishready";
-export const PACKAGE_VERSION = "1.0.5";
+export const PACKAGE_VERSION = packageJson.version;
 export const PACKAGE_DESCRIPTION = packageJson.description;
 export const ANALYSIS_PROFILE = "deterministic_english_v1";
 export const ANALYSIS_SCHEMA_VERSION = 1;

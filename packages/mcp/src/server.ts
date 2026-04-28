@@ -263,6 +263,45 @@ export class WritingMetricsServer {
     );
 
     this.server.registerResource(
+      "editorial-guardrails",
+      "usage://editorial_guardrails",
+      {
+        description:
+          "Server-level instructions for preserving voice, facts, and intentional style during revision workflows.",
+      },
+      async (uri) => ({
+        contents: [
+          {
+            uri: uri.href,
+            mimeType: "application/json",
+            text: JSON.stringify(
+              {
+                principle:
+                  "Use PublishReady as a deterministic editorial diagnostic system, not as a command to sand down all distinctive wording.",
+                guardrails: [
+                  "Preserve facts, claims, named entities, dates, numbers, citations, and technical terminology unless the user explicitly asks for substantive rewriting.",
+                  "Treat flagged words, formulas, and lever suggestions as diagnostic evidence, not mandatory replacements.",
+                  "Preserve intentional voice, rhythm, and domain-specific language when they are serving the text well.",
+                  "Prefer surgical edits over broad rewrites when only a few localized hotspots are causing the score drag.",
+                  "Use compare_text_versions after revision to verify improvement without integrity loss.",
+                  "If a cleaner metric profile would obviously erase tone or nuance, explain the tradeoff instead of forcing compliance.",
+                ],
+                default_workflow: [
+                  "analyze_text",
+                  "suggest_revision_levers",
+                  "find_hotspots",
+                  "compare_text_versions",
+                ],
+              },
+              null,
+              2
+            ),
+          },
+        ],
+      })
+    );
+
+    this.server.registerResource(
       "targets-schema",
       "schemas://targets",
       {

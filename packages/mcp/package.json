@@ -1,6 +1,6 @@
 {
   "name": "@veldica/publishready-mcp",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "mcpName": "io.github.veldica/publishready",
   "description": "PublishReady: Turn AI drafts into publish-ready writing.",
   "type": "module",
@@ -31,8 +31,8 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.6.0",
-    "@veldica/publishready-core": "^1.0.5",
-    "@veldica/publishready-schemas": "^1.0.5",
+    "@veldica/publishready-core": "^1.0.6",
+    "@veldica/publishready-schemas": "^1.0.6",
     "express": "^5.2.1",
     "zod": "^3.23.8",
     "zod-to-json-schema": "^3.25.2"

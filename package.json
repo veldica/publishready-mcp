@@ -1,6 +1,6 @@
 {
   "name": "publishready",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "PublishReady: Turn AI drafts into publish-ready writing.",
   "private": true,
   "workspaces": [
@@ -19,7 +19,8 @@
     "lint:fix": "npm run lint:fix --workspaces",
     "typecheck": "npm run build --workspace=@veldica/publishready-schemas && npm run typecheck --workspace=@veldica/publishready-core && npm run typecheck --workspace=@veldica/publishready-cli && npm run typecheck --workspace=@veldica/publishready-mcp && npm run typecheck --workspace=@veldica/publishready-schemas",
     "clean": "rm -rf packages/*/dist *.tgz",
-    "release:dry-run": "npm run clean && npm run build && npm run lint && npm run typecheck && npm test && npm pack --workspace=@veldica/publishready-mcp --dry-run"
+    "release:dry-run": "npm run clean && npm run build && npm run lint && npm run typecheck && npm test && npm pack --workspace=@veldica/publishready-mcp --dry-run",
+    "publish:smithery": "node ./scripts/publish-smithery-bundle.mjs"
   },
   "repository": {
     "type": "git",

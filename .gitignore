@@ -52,3 +52,5 @@ scratch/
 # Project specific
 tmp/
 temp/
+AGENTS.md
+scripts/publish-smithery-bundle.mjs
