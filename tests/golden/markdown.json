@@ -1,0 +1,23 @@
+{
+  "counts": {
+    "word_count": 46,
+    "sentence_count": 8,
+    "paragraph_count": 8,
+    "heading_count": 3,
+    "list_item_count": 3
+  },
+  "lexical_metrics": {
+    "avg_characters_per_word": 6.4783,
+    "complex_word_ratio": 0.3478,
+    "difficult_word_ratio": 0.6957
+  },
+  "readability_band": "College Graduate / Difficult",
+  "consensus_grade": 13,
+  "formulas": {
+    "flesch_reading_ease": 9.7,
+    "flesch_kincaid_grade_level": 13.3,
+    "dale_chall": 14.9,
+    "type_token_ratio": 0.8913
+  },
+  "top_revision_levers": []
+}

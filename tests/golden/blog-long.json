@@ -1,0 +1,27 @@
+{
+  "counts": {
+    "word_count": 273,
+    "sentence_count": 15,
+    "paragraph_count": 3,
+    "heading_count": 0,
+    "list_item_count": 0
+  },
+  "lexical_metrics": {
+    "avg_characters_per_word": 5.2527,
+    "complex_word_ratio": 0.1941,
+    "difficult_word_ratio": 0.3846
+  },
+  "readability_band": "College Graduate / Difficult",
+  "consensus_grade": 13,
+  "formulas": {
+    "flesch_reading_ease": 40.9,
+    "flesch_kincaid_grade_level": 12.1,
+    "dale_chall": 10.6,
+    "type_token_ratio": 0.685
+  },
+  "top_revision_levers": [
+    "shorten_long_sentences",
+    "break_sentence_tails",
+    "tighten_scene_pacing"
+  ]
+}

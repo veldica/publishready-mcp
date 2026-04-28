@@ -1,0 +1,28 @@
+{
+  "mcpVersion": "1.0.0",
+  "mcpName": "io.github.veldica/publishready",
+  "name": "@veldica/publishready-mcp",
+  "version": "1.0.0",
+  "description": "PublishReady: Turn AI drafts into publish-ready writing. The final QA pass for AI-generated prose.",
+  "transport": {
+    "type": "stdio",
+    "command": "npx",
+    "args": ["-y", "@veldica/publishready-mcp"]
+  },
+  "capabilities": {
+    "tools": true,
+    "resources": true,
+    "prompts": true
+  },
+  "keywords": [
+    "writing",
+    "editing",
+    "readability",
+    "metrics",
+    "prose-analysis",
+    "deterministic",
+    "local-first"
+  ],
+  "homepage": "https://veldica.com/publish-ready",
+  "repository": "https://github.com/veldica/publishready-mcp.git"
+}

@@ -1,0 +1,6 @@
+- Install from npm.
+- Run through stdio.
+- Analyze text for counts and formulas.
+- Check numeric targets.
+- Review ranked revision levers.
+- Keep data local.

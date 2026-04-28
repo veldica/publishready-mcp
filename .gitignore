@@ -1,0 +1,54 @@
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+*.tgz
+
+# Testing and reports
+coverage/
+*.lcov
+test_output.txt
+test_output_*.txt
+test_failure.txt
+final_test_report.txt
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE and OS
+.vscode/
+!.vscode/extensions.json
+.idea/
+.cursor/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Local assistant/tool state
+scratch/
+.codex
+.gemini/
+.claude/
+.continue/
+.aider*
+.copilot/
+
+# Project specific
+tmp/
+temp/

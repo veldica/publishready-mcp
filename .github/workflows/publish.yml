@@ -1,0 +1,48 @@
+name: Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      package:
+        description: 'Package to publish (Select "All" for first release or full sync)'
+        required: true
+        type: choice
+        options:
+          - 'All (schemas -> core -> mcp -> cli)'
+          - '@veldica/publishready-schemas'
+          - '@veldica/publishready-core'
+          - '@veldica/publishready-mcp'
+          - '@veldica/publishready-cli'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org'
+      - run: npm ci
+      - run: npm run build
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm pack --workspace=@veldica/publishready-mcp --dry-run
+      - name: Publish All
+        if: github.event.inputs.package == 'All (schemas -> core -> mcp -> cli)'
+        run: |
+          npm publish --workspace=@veldica/publishready-schemas --provenance --access public
+          npm publish --workspace=@veldica/publishready-core --provenance --access public
+          npm publish --workspace=@veldica/publishready-mcp --provenance --access public
+          npm publish --workspace=@veldica/publishready-cli --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish Single
+        if: github.event.inputs.package != 'All (schemas -> core -> mcp -> cli)'
+        run: npm publish --workspace=${{ github.event.inputs.package }} --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

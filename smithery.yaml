@@ -1,0 +1,18 @@
+# Smithery configuration file
+# This file allows Smithery.ai to deploy and run your MCP server.
+# See https://smithery.ai/docs/build/project-config/smithery-yaml for details.
+
+startCommand:
+  type: stdio
+
+configSchema:
+  type: object
+  properties: {}
+
+commandFunction: |-
+  (config) => ({
+    command: 'npx',
+    args: ['-y', '@veldica/publishready-mcp']
+  })
+
+exampleConfig: {}

@@ -1,0 +1,1 @@
+Ship sharper content analysis in minutes, not weeks. Writing Metrics MCP gives your AI workflow deterministic readability checks, structural counts, and revision levers without sending text to a remote service. Install it from npm, run it locally over stdio, and keep the feedback loop fast.

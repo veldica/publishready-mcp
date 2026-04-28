@@ -1,0 +1,25 @@
+{
+  "counts": {
+    "word_count": 52,
+    "sentence_count": 2,
+    "paragraph_count": 1,
+    "heading_count": 0,
+    "list_item_count": 0
+  },
+  "lexical_metrics": {
+    "avg_characters_per_word": 6.0962,
+    "complex_word_ratio": 0.3654,
+    "difficult_word_ratio": 0.6154
+  },
+  "readability_band": "Professional / Very Difficult",
+  "consensus_grade": 19,
+  "formulas": {
+    "flesch_reading_ease": -6.7,
+    "flesch_kincaid_grade_level": 20,
+    "dale_chall": 14.6,
+    "type_token_ratio": 0.8846
+  },
+  "top_revision_levers": [
+    "shorten_long_sentences"
+  ]
+}

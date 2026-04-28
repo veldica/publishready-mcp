@@ -1,0 +1,1 @@
+The Model Context Protocol (MCP) is an open standard that enables developers to build secure, two-way integrations between their data sources and AI models. By providing a unified interface, MCP simplifies the process of connecting LLMs to external tools and repositories, ensuring deterministic outputs and reproducible workflows across different platforms and environments.

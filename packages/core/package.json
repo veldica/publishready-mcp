@@ -1,0 +1,57 @@
+{
+  "name": "@veldica/publishready-core",
+  "version": "1.0.0",
+  "description": "PublishReady: Deterministic writing analysis orchestration engine",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run clean && npm run build",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@veldica/prose-analyzer": "^1.3.0",
+    "@veldica/prose-linter": "^1.1.3",
+    "@veldica/prose-tokenizer": "^1.1.2",
+    "@veldica/readability": "^1.2.1",
+    "@veldica/publishready-schemas": "^1.0.0"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "readability",
+    "writing-metrics",
+    "text-analysis",
+    "prose-analysis"
+  ],
+  "license": "MIT",
+  "author": "Writing Metrics MCP Contributors",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/veldica/publishready-mcp.git",
+    "directory": "packages/core"
+  },
+  "bugs": {
+    "url": "https://github.com/veldica/publishready-mcp/issues"
+  },
+  "homepage": "https://veldica.com/publish-ready",
+  "files": [
+    "dist"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "counts": {
+    "word_count": 45,
+    "sentence_count": 3,
+    "paragraph_count": 1,
+    "heading_count": 0,
+    "list_item_count": 0
+  },
+  "lexical_metrics": {
+    "avg_characters_per_word": 5.3111,
+    "complex_word_ratio": 0.1778,
+    "difficult_word_ratio": 0.5556
+  },
+  "readability_band": "Standard / High School",
+  "consensus_grade": 12,
+  "formulas": {
+    "flesch_reading_ease": 39.3,
+    "flesch_kincaid_grade_level": 11.5,
+    "dale_chall": 13.2,
+    "type_token_ratio": 0.9556
+  },
+  "top_revision_levers": [
+    "shorten_long_sentences"
+  ]
+}

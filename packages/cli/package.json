@@ -1,0 +1,51 @@
+{
+  "name": "@veldica/publishready-cli",
+  "version": "1.0.0",
+  "description": "PublishReady: Deterministic writing control CLI",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "publishready": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run clean && npm run build",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@veldica/publishready-core": "^1.0.0",
+    "@veldica/publishready-schemas": "^1.0.0",
+    "commander": "^12.0.0"
+  },
+  "keywords": [
+    "cli",
+    "writing-metrics",
+    "text-analysis",
+    "readability",
+    "professional-writing"
+  ],
+  "license": "MIT",
+  "author": "Writing Metrics MCP Contributors",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/veldica/publishready-mcp.git",
+    "directory": "packages/cli"
+  },
+  "bugs": {
+    "url": "https://github.com/veldica/publishready-mcp/issues"
+  },
+  "homepage": "https://veldica.com/publish-ready",
+  "files": [
+    "dist"
+  ]
+}
