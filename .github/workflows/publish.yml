@@ -17,19 +17,18 @@ on:
           - '@veldica/publishready-mcp'
           - '@veldica/publishready-cli'
 
+env:
+  SELECTED_PACKAGE: ${{ github.event_name == 'push' && 'All (schemas -> core -> mcp -> cli)' || github.event.inputs.package }}
+
 jobs:
-  publish:
+  verify:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write
-      packages: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
       - run: npm ci
       - run: npm run build
       - run: npm run lint
@@ -37,9 +36,20 @@ jobs:
       - run: npm test
       - run: npm pack --workspace=@veldica/publishready-mcp --dry-run
 
-      - name: Publish All to NPM
-        if: github.event_name == 'push' || github.event.inputs.package == 'All (schemas -> core -> mcp -> cli)'
-        continue-on-error: true
+  publish-npm:
+    runs-on: ubuntu-latest
+    needs: verify
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org'
+      - run: npm ci
+      - name: Publish to NPM
         run: |
           publish_if_missing() {
             package="$1"
@@ -50,35 +60,33 @@ jobs:
               npm publish --workspace="$package" --provenance --access public
             fi
           }
-          publish_if_missing @veldica/publishready-schemas
-          publish_if_missing @veldica/publishready-core
-          publish_if_missing @veldica/publishready-mcp
-          publish_if_missing @veldica/publishready-cli
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish Single to NPM
-        if: github.event_name == 'workflow_dispatch' && github.event.inputs.package != 'All (schemas -> core -> mcp -> cli)'
-        continue-on-error: true
-        run: |
-          package="${{ github.event.inputs.package }}"
-          version="$(npm pkg get version --workspace="$package" --json | node -e 'const input = JSON.parse(require("fs").readFileSync(0, "utf8")); console.log(typeof input === "string" ? input : Object.values(input)[0]);')"
-          if npm view "$package@$version" version >/dev/null 2>&1; then
-            echo "$package@$version already exists on npm; skipping"
+          if [ "$SELECTED_PACKAGE" = "All (schemas -> core -> mcp -> cli)" ]; then
+            publish_if_missing @veldica/publishready-schemas
+            publish_if_missing @veldica/publishready-core
+            publish_if_missing @veldica/publishready-mcp
+            publish_if_missing @veldica/publishready-cli
           else
-            npm publish --workspace="$package" --provenance --access public
+            publish_if_missing "$SELECTED_PACKAGE"
           fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+  publish-github-packages:
+    runs-on: ubuntu-latest
+    needs: verify
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           registry-url: 'https://npm.pkg.github.com'
           scope: '@veldica'
-
-      - name: Publish All to GitHub Packages
-        if: github.event_name == 'push' || github.event.inputs.package == 'All (schemas -> core -> mcp -> cli)'
+      - run: npm ci
+      - name: Publish to GitHub Packages
         run: |
           publish_if_missing() {
             package="$1"
@@ -89,22 +97,14 @@ jobs:
               npm publish --workspace="$package" --access public
             fi
           }
-          publish_if_missing @veldica/publishready-schemas
-          publish_if_missing @veldica/publishready-core
-          publish_if_missing @veldica/publishready-mcp
-          publish_if_missing @veldica/publishready-cli
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Publish Single to GitHub Packages
-        if: github.event_name == 'workflow_dispatch' && github.event.inputs.package != 'All (schemas -> core -> mcp -> cli)'
-        run: |
-          package="${{ github.event.inputs.package }}"
-          version="$(npm pkg get version --workspace="$package" --json | node -e 'const input = JSON.parse(require("fs").readFileSync(0, "utf8")); console.log(typeof input === "string" ? input : Object.values(input)[0]);')"
-          if npm view "$package@$version" version >/dev/null 2>&1; then
-            echo "$package@$version already exists on GitHub Packages; skipping"
+          if [ "$SELECTED_PACKAGE" = "All (schemas -> core -> mcp -> cli)" ]; then
+            publish_if_missing @veldica/publishready-schemas
+            publish_if_missing @veldica/publishready-core
+            publish_if_missing @veldica/publishready-mcp
+            publish_if_missing @veldica/publishready-cli
           else
-            npm publish --workspace="$package" --access public
+            publish_if_missing "$SELECTED_PACKAGE"
           fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
