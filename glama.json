@@ -1,0 +1,25 @@
+{
+  "$schema": "https://glama.ai/mcp/schemas/server.json",
+  "name": "publishready",
+  "description": "MCP server for AI writing quality, revision comparison, readability analysis, and fact-preserving publish-ready editing guidance.",
+  "type": "mcp_server",
+  "status": "stable",
+  "transport": [
+    "stdio"
+  ],
+  "maintainers": [
+    "veldica"
+  ],
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "mcp-server",
+    "ai-writing",
+    "writing-tools",
+    "editing",
+    "readability",
+    "revision-analysis",
+    "fact-preservation",
+    "publish-ready"
+  ]
+}

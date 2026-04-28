@@ -1,7 +1,8 @@
 {
   "name": "publishready",
   "version": "1.0.6",
-  "description": "PublishReady: Turn AI drafts into publish-ready writing.",
+  "description": "MCP server for AI writing quality, revision comparison, readability analysis, and fact-preserving publish-ready editing guidance.",
+  "mcpName": "io.github.veldica/publishready",
   "private": true,
   "workspaces": [
     "packages/*"
@@ -36,15 +37,16 @@
   "keywords": [
     "mcp",
     "model-context-protocol",
+    "mcp-server",
+    "ai-writing",
+    "writing-tools",
+    "editing",
     "readability",
-    "writing-metrics",
-    "text-analysis",
-    "flesch-kincaid",
-    "editorial",
-    "llm-tools",
-    "stdio",
-    "local-first",
-    "deterministic"
+    "revision-analysis",
+    "content-quality",
+    "fact-preservation",
+    "publishing",
+    "publish-ready"
   ],
   "author": "Writing Metrics MCP Contributors",
   "license": "MIT",

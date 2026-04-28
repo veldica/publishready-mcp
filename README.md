@@ -90,6 +90,16 @@ npm test
 - Product homepage: `https://veldica.com/publish-ready`
 - Source repository: `https://github.com/veldica/publishready-mcp`
 
+## Registry and Directory Metadata
+
+PublishReady is prepared for MCP directory discovery through:
+- GitHub repository topics
+- npm package keywords
+- Glama metadata via `glama.json`
+- Official MCP Registry metadata via `mcpName`
+
+This MCP is designed for AI-assisted writing workflows where the model should improve clarity, structure, readability, and publish-readiness while preserving facts, terminology, intent, and author voice.
+
 ## License
 
 MIT
