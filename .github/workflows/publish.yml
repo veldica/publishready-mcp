@@ -39,17 +39,35 @@ jobs:
 
       - name: Publish All to NPM
         if: github.event_name == 'push' || github.event.inputs.package == 'All (schemas -> core -> mcp -> cli)'
+        continue-on-error: true
         run: |
-          npm publish --workspace=@veldica/publishready-schemas --provenance --access public
-          npm publish --workspace=@veldica/publishready-core --provenance --access public
-          npm publish --workspace=@veldica/publishready-mcp --provenance --access public
-          npm publish --workspace=@veldica/publishready-cli --provenance --access public
+          publish_if_missing() {
+            package="$1"
+            version="$(npm pkg get version --workspace="$package" --json | node -e 'const input = JSON.parse(require("fs").readFileSync(0, "utf8")); console.log(typeof input === "string" ? input : Object.values(input)[0]);')"
+            if npm view "$package@$version" version >/dev/null 2>&1; then
+              echo "$package@$version already exists on npm; skipping"
+            else
+              npm publish --workspace="$package" --provenance --access public
+            fi
+          }
+          publish_if_missing @veldica/publishready-schemas
+          publish_if_missing @veldica/publishready-core
+          publish_if_missing @veldica/publishready-mcp
+          publish_if_missing @veldica/publishready-cli
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish Single to NPM
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.package != 'All (schemas -> core -> mcp -> cli)'
-        run: npm publish --workspace=${{ github.event.inputs.package }} --provenance --access public
+        continue-on-error: true
+        run: |
+          package="${{ github.event.inputs.package }}"
+          version="$(npm pkg get version --workspace="$package" --json | node -e 'const input = JSON.parse(require("fs").readFileSync(0, "utf8")); console.log(typeof input === "string" ? input : Object.values(input)[0]);')"
+          if npm view "$package@$version" version >/dev/null 2>&1; then
+            echo "$package@$version already exists on npm; skipping"
+          else
+            npm publish --workspace="$package" --provenance --access public
+          fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -62,15 +80,31 @@ jobs:
       - name: Publish All to GitHub Packages
         if: github.event_name == 'push' || github.event.inputs.package == 'All (schemas -> core -> mcp -> cli)'
         run: |
-          npm publish --workspace=@veldica/publishready-schemas --access public
-          npm publish --workspace=@veldica/publishready-core --access public
-          npm publish --workspace=@veldica/publishready-mcp --access public
-          npm publish --workspace=@veldica/publishready-cli --access public
+          publish_if_missing() {
+            package="$1"
+            version="$(npm pkg get version --workspace="$package" --json | node -e 'const input = JSON.parse(require("fs").readFileSync(0, "utf8")); console.log(typeof input === "string" ? input : Object.values(input)[0]);')"
+            if npm view "$package@$version" version >/dev/null 2>&1; then
+              echo "$package@$version already exists on GitHub Packages; skipping"
+            else
+              npm publish --workspace="$package" --access public
+            fi
+          }
+          publish_if_missing @veldica/publishready-schemas
+          publish_if_missing @veldica/publishready-core
+          publish_if_missing @veldica/publishready-mcp
+          publish_if_missing @veldica/publishready-cli
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish Single to GitHub Packages
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.package != 'All (schemas -> core -> mcp -> cli)'
-        run: npm publish --workspace=${{ github.event.inputs.package }} --access public
+        run: |
+          package="${{ github.event.inputs.package }}"
+          version="$(npm pkg get version --workspace="$package" --json | node -e 'const input = JSON.parse(require("fs").readFileSync(0, "utf8")); console.log(typeof input === "string" ? input : Object.values(input)[0]);')"
+          if npm view "$package@$version" version >/dev/null 2>&1; then
+            echo "$package@$version already exists on GitHub Packages; skipping"
+          else
+            npm publish --workspace="$package" --access public
+          fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
