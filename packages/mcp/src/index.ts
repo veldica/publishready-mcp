@@ -3,6 +3,7 @@ import { runStdioServer } from "./transports/stdio.js";
 import { runHttpServer } from "./transports/http.js";
 
 import { pathToFileURL } from "node:url";
+import { realpathSync } from "node:fs";
 
 export * from "./server.js";
 export * from "./transports/stdio.js";
@@ -12,7 +13,9 @@ export * from "./packageInfo.js";
 
 // Run server if executed directly
 const isDirectRun =
-  Boolean(process.argv[1]) && import.meta.url === pathToFileURL(process.argv[1]).href;
+  Boolean(process.argv[1]) &&
+  (import.meta.url === pathToFileURL(process.argv[1]).href ||
+    import.meta.url === pathToFileURL(realpathSync(process.argv[1])).href);
 
 if (isDirectRun) {
   const transportArg = process.argv.find((arg) => arg.startsWith("--transport="));

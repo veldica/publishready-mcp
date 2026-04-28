@@ -7,7 +7,12 @@
     "packages/*"
   ],
   "type": "module",
+  "bin": {
+    "publishready": "./packages/cli/dist/index.js",
+    "publishready-mcp": "./packages/mcp/dist/index.js"
+  },
   "scripts": {
+    "prepare": "npm run build",
     "build": "npm run build --workspace=@veldica/publishready-schemas && npm run build --workspace=@veldica/publishready-core && npm run build --workspace=@veldica/publishready-cli && npm run build --workspace=@veldica/publishready-mcp",
     "test": "npm run build && vitest run tests/",
     "lint": "npm run lint --workspaces",
