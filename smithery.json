@@ -1,0 +1,17 @@
+{
+  "name": "PublishReady",
+  "description": "Deterministic writing control with local-first metrics and AI prose audits.",
+  "repository": "https://github.com/veldica/publishready-mcp",
+  "npm": "@veldica/publishready-mcp",
+  "tags": [
+    "writing",
+    "mcp",
+    "readability",
+    "prose-analysis",
+    "editorial",
+    "ai-writing"
+  ],
+  "homepage": "https://veldica.com/publish-ready",
+  "author": "Veldica",
+  "license": "MIT"
+}
