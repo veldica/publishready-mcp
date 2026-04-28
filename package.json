@@ -1,6 +1,6 @@
 {
   "name": "publishready",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "PublishReady: Turn AI drafts into publish-ready writing.",
   "private": true,
   "workspaces": [

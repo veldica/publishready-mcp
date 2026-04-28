@@ -1,17 +1,17 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "veldica/publishready",
+  "name": "io.github.veldica/publishready",
   "description": "PublishReady: Deterministic writing control with local-first metrics and AI prose audits.",
   "repository": {
     "url": "https://github.com/veldica/publishready-mcp",
     "source": "github"
   },
-  "version": "1.0.4",
+  "version": "1.0.5",
   "packages": [
     {
       "registryType": "npm",
       "identifier": "@veldica/publishready-mcp",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "transport": {
         "type": "stdio"
       }

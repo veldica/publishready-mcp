@@ -1,7 +1,7 @@
 {
   "name": "PublishReady",
   "description": "Deterministic writing control with local-first metrics and AI prose audits.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "mcpName": "io.github.veldica/publishready",
   "repository": "https://github.com/veldica/publishready-mcp",
   "npm": "@veldica/publishready-mcp",
