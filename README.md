@@ -93,3 +93,5 @@ npm test
 ## License
 
 MIT
+
+[![smithery badge](https://smithery.ai/badge/veldica/publishready)](https://smithery.ai/servers/veldica/publishready)
