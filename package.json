@@ -1,6 +1,6 @@
 {
   "name": "publishready",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "PublishReady: Turn AI drafts into publish-ready writing.",
   "private": true,
   "workspaces": [
@@ -48,6 +48,7 @@
   "author": "Writing Metrics MCP Contributors",
   "license": "MIT",
   "devDependencies": {
+    "@anthropic-ai/mcpb": "^2.1.2",
     "@types/node": "^20.12.7",
     "@typescript-eslint/eslint-plugin": "^8.59.0",
     "@typescript-eslint/parser": "^8.59.0",
