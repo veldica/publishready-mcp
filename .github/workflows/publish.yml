@@ -1,6 +1,9 @@
 name: Publish
 
 on:
+  push:
+    tags:
+      - 'v*'
   workflow_dispatch:
     inputs:
       package:
@@ -20,6 +23,7 @@ jobs:
     permissions:
       contents: read
       id-token: write
+      packages: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -32,8 +36,9 @@ jobs:
       - run: npm run typecheck
       - run: npm test
       - run: npm pack --workspace=@veldica/publishready-mcp --dry-run
-      - name: Publish All
-        if: github.event.inputs.package == 'All (schemas -> core -> mcp -> cli)'
+
+      - name: Publish All to NPM
+        if: github.event_name == 'push' || github.event.inputs.package == 'All (schemas -> core -> mcp -> cli)'
         run: |
           npm publish --workspace=@veldica/publishready-schemas --provenance --access public
           npm publish --workspace=@veldica/publishready-core --provenance --access public
@@ -41,8 +46,31 @@ jobs:
           npm publish --workspace=@veldica/publishready-cli --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Publish Single
-        if: github.event.inputs.package != 'All (schemas -> core -> mcp -> cli)'
+
+      - name: Publish Single to NPM
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.package != 'All (schemas -> core -> mcp -> cli)'
         run: npm publish --workspace=${{ github.event.inputs.package }} --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@veldica'
+
+      - name: Publish All to GitHub Packages
+        if: github.event_name == 'push' || github.event.inputs.package == 'All (schemas -> core -> mcp -> cli)'
+        run: |
+          npm publish --workspace=@veldica/publishready-schemas --access public
+          npm publish --workspace=@veldica/publishready-core --access public
+          npm publish --workspace=@veldica/publishready-mcp --access public
+          npm publish --workspace=@veldica/publishready-cli --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish Single to GitHub Packages
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.package != 'All (schemas -> core -> mcp -> cli)'
+        run: npm publish --workspace=${{ github.event.inputs.package }} --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
