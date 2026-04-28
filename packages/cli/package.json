@@ -1,6 +1,6 @@
 {
   "name": "@veldica/publishready-cli",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "PublishReady: Deterministic writing control CLI",
   "type": "module",
   "publishConfig": {
@@ -23,8 +23,8 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@veldica/publishready-core": "^1.0.3",
-    "@veldica/publishready-schemas": "^1.0.3",
+    "@veldica/publishready-core": "^1.0.4",
+    "@veldica/publishready-schemas": "^1.0.4",
     "commander": "^12.0.0"
   },
   "keywords": [
