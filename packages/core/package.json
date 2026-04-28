@@ -1,6 +1,6 @@
 {
   "name": "@veldica/publishready-core",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "PublishReady: Deterministic writing analysis orchestration engine",
   "type": "module",
   "publishConfig": {
@@ -30,7 +30,7 @@
     "@veldica/prose-linter": "^1.1.3",
     "@veldica/prose-tokenizer": "^1.1.2",
     "@veldica/readability": "^1.2.1",
-    "@veldica/publishready-schemas": "^1.0.1"
+    "@veldica/publishready-schemas": "^1.0.3"
   },
   "keywords": [
     "mcp",

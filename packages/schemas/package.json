@@ -1,6 +1,6 @@
 {
   "name": "@veldica/publishready-schemas",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "PublishReady: Unified Zod schemas and explicit interfaces",
   "type": "module",
   "publishConfig": {
