@@ -104,4 +104,4 @@ This MCP is designed for AI-assisted writing workflows where the model should im
 
 MIT
 
-[![smithery badge](https://smithery.ai/badge/veldica/publishready)](https://smithery.ai/servers/veldica/publishready)
+[![LightNow capabilities](https://lightnow.ai/badge/io.github.veldica/publishready)](https://lightnow.ai/servers/io.github.veldica/publishready)
